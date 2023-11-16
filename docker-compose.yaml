@@ -1,0 +1,51 @@
+version: "4.25"
+
+services:
+  mongodb:
+    image: "mongo"
+    ports: 
+      - "27017:27017"
+    volumes:
+      - data:/data/db
+    environment:
+      MONGODB_INITDB_ROOT_USERNAME: "root"
+      MONGODB_INITDB_ROOT_PASSWORD: "pass"
+
+  backend:
+    build: 
+      context: server
+    ports:
+      - "8080:8080"
+    volumes:
+      - /server
+    depends_on:
+      - "mongodb"
+    develop:
+      watch:
+        - action: sync
+          path: ./server
+          target: /server
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: package.json
+
+  frontend:
+    build:
+      context: client
+    command: npm start
+    ports:
+      - "3000:3000"
+    depends_on:
+      - "backend"
+    develop:
+      watch:
+        - action: sync
+          path: ./client
+          target: /client
+          ignore:
+            - node_modules/
+        - action: rebuild
+          path: package.json
+volumes:
+  data:

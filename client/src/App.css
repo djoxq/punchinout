@@ -1,0 +1,55 @@
+.App {
+  text-align: center;
+}
+
+body {
+  background-color: #282c34;
+}
+
+.App_wrapper {
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: rgb(255, 255, 255);
+  min-height: 100vh;
+  gap: 20px;
+}
+
+.report-link {
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid cyan;
+  border-radius: 9px;
+  padding: 4px;
+}
+
+.action-buttons_wrapper {
+  display: flex; 
+  justify-content: space-between;
+  width: 100%;
+}
+
+.action-buttons_wrapper > button {
+  border: 1px solid;
+  border-radius: 8px; 
+  width: 50px;
+  height: 20px;
+  cursor: pointer;
+}
+
+#start {
+  background: #32c167;
+  border-color: #32c167;
+}
+
+#stop {
+  background: #f96f87;
+  border-color: #f96f87;
+}
